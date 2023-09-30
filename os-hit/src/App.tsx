@@ -1,4 +1,5 @@
 import './App.css';
+
 import {TopNav, BottomNav, IngredientsView} from './Components/index';
 
 function App() {
