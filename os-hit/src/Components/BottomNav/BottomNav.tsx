@@ -2,7 +2,7 @@ import { Button, Container, Grid, Menu, MenuItem, Typography } from '@mui/materi
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react'
 import { styled } from '@mui/system';
-import { GenerateRandom } from '../index';
+import GenerateRandom from '../../Components/GenerateRandom/GenerateRandom';
 
 const BottomFix = styled('div')({
     position: 'fixed',
