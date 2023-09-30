@@ -1,16 +1,38 @@
-function List_Ingredients()
-{
-    const list_of_ingredients = [2, 1, 5, 7, 30];
-    return (
-        <div className = "Recipe">
-            <div className = "">
-                <p> { list_of_ingredients[0] } </p>
-                <p> { list_of_ingredients[1] }</p>
-                <p> { list_of_ingredients[2] }</p>
-                <p> { list_of_ingredients[3] }</p>
-            </div>
-        </div>
-    )
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+
+//npm install --save react-window
+import { FixedSizeList, ListChildComponentProps } from 'react-window';
+
+function renderRow(props: ListChildComponentProps) {
+  const { index, style } = props;
+
+  return (
+    <ListItem style={style} key={index} component="div" disablePadding>
+      <ListItemButton>
+        <ListItemText primary={`Item ${index + 1}`} />
+      </ListItemButton>
+    </ListItem>
+  );
 }
 
-export default List_Ingredients
+export default function VirtualizedList() {
+  return (
+    <Box
+      sx={{ width: '100%', height: 400, maxWidth: 360, bgcolor: 'background.paper' }}
+    >
+      <FixedSizeList
+        height={400}
+        width={360}
+        itemSize={46}
+        itemCount={200}
+        overscanCount={5}
+      >
+        {renderRow}
+      </FixedSizeList>
+    </Box>
+  );
+}
