@@ -3,7 +3,7 @@ import React from 'react'
 
 function GenerateRandom() {
   return (
-    <Button>GenerateRandom</Button>
+    <Button>Generate Random</Button>
   )
 }
 

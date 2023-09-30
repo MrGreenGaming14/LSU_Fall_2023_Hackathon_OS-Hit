@@ -1,12 +1,13 @@
 import './App.css';
-import TopNav from './Components/index';
+import {TopNav, BottomNav} from './Components/index';
 import { Container } from '@mui/material';
 
 function App() {
   return (
-    <Container>
+    <div>
       <TopNav/>
-    </Container>
+      <BottomNav showGenerate/>
+    </div>
   );
 }
 
