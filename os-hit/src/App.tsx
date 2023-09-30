@@ -1,16 +1,17 @@
 import './App.css';
-import RecipeCard from './Components/RecipeCard/RecipeCard';
-import TopNav from './Components/index';
-import { Container } from '@mui/material';
+
+import {TopNav, BottomNav, IngredientsView} from './Components/index';
 
 function App() {
   return (
-    <Container>
-    <div className="App">
-      <GenerateRandom/>
-    </div>
+    <div>
       <TopNav/>
-    </Container>
+      <div className='mainViewport'>
+        <IngredientsView/>
+      </div>
+      
+      <BottomNav showGenerate/>
+    </div>
   );
 }
 

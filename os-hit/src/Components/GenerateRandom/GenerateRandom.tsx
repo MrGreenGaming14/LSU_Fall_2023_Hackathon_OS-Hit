@@ -1,5 +1,13 @@
 // import { Button } from '@mui/material'
 
+// <<<<<<< Robbie
+// =======
+// function GenerateRandom() {
+//   return (
+//     <Button>Generate Random</Button>
+//   )
+// }
+// >>>>>>> main
 
 // import React, { useState } from 'react';
 // import {data} from './result';
