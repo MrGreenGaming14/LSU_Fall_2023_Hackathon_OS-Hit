@@ -31,26 +31,26 @@
 //        });
 //    }, []);
 
-//    return (
-//      <div>
-//        <h1>Recipes</h1>
-//        {isLoading ? (
-//          <p>Loading...</p>
-//        ) : (
-//          <ul>
-//            {recipes.map((recipe) => (
-//              <li key={recipe.id}>
-//                <h2>{recipe.title}</h2>
-//                <img src={recipe.image} alt={recipe.title} />
-//                <p>Ingredients: {recipe.ingredients.join(', ')}</p>
-//              </li>
-//            ))}
-//          </ul>
-//        )}
-//      </div>
-//    );
-//  }
+//   return (
+//     <div>
+//       <h1>Recipes</h1>
+//       {isLoading ? (
+//         <p>Loading...</p>
+//       ) : (
+//         <ul>
+//           {recipes.map((recipe) => (
+//             <li key={recipe.id}>
+//               <h2>{recipe.title}</h2>
+//               <img src={recipe.image} alt={recipe.title} />
+//               <p>Ingredients: {recipe.ingredients.join(', ')}</p>
+//             </li>
+//           ))}
+//         </ul>
+//       )}
+//     </div>
+//   );
+// }
 
-//  export default RecipeListComponent;
+// export default RecipeListComponent;
 
 export {}

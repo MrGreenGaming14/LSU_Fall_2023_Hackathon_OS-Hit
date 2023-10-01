@@ -1,8 +1,7 @@
-import { Button, Container, Grid, Menu, MenuItem, Typography } from '@mui/material'
+import { Button, Grid, Menu, MenuItem } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
-import React from 'react'
+import React, {  } from 'react'
 import { styled } from '@mui/system';
-import GenerateRandom from '../../Components/GenerateRandom/GenerateRandom';
 
 const BottomFix = styled('div')({
     position: 'fixed',
@@ -14,7 +13,6 @@ const BottomFix = styled('div')({
 interface Props {
     showGenerate: boolean;
 }
-
 
 
 function BottomNav(props: Props) {
@@ -30,10 +28,6 @@ function BottomNav(props: Props) {
     return (
         <BottomFix>
             <Grid container flexDirection={'row'} justifyContent={'space-around'}>
-                {props.showGenerate ?
-                    <Grid item>
-                    </Grid> 
-                    : null}
                 <Grid item>
                     <Button
                         id="positioned-button"

@@ -4,7 +4,7 @@ import TopNav from '../../Components/TopNav/TopNav';
 import { Container } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 
-function RecipeDisplay() {
+function RecipeDisplay(props: Props) {
   const [counter, setCounter] = useState(0);
   const [recipeCards, setRecipeCards] = useState<JSX.Element[]>([]);
 
