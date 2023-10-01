@@ -1,5 +1,6 @@
-{ "homepage": "https://shark9y.github.io/LSU_Fall_2023_Hackathon_OS-Hit/",
+{ 
   "name": "os-hit",
+  "homepage": "https://shark9y.github.io/LSU_Fall_2023_Hackathon_OS-Hit/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

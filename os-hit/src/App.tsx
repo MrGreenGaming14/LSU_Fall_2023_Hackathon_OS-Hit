@@ -41,7 +41,6 @@ function App() {
     else {
       setDisplayButton(<EditIngButton handleClick={handleClick} />);
       setDisplayed = !setDisplayed;
-
     }
 
   }
