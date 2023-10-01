@@ -14,7 +14,7 @@ interface Props {
 }
 function IngredientCard(props: Props) {
     const [moreInfo, setMoreInfo] = useState<boolean>(false);
-    const handleSwitch = () => {  };
+    const handleSwitch = () => {}; //TODO: handle toggle on and off state
 
     return (
         <Container>

@@ -28,7 +28,6 @@ function RecipeDisplay() {
     <button onClick={incrementCounter}>Increment</button>
       recipeCards[counter]
     </div>
-      <TopNav/>
     </Container>
   );
 }
