@@ -6,9 +6,6 @@ import React, { useState } from 'react'
 
 interface Props {
     name: string;
-    calories: number;
-    protein: number;
-    moreInfo: [];
     toggled: boolean;
     handleDelete: (e: string) => void;
 }
@@ -27,7 +24,7 @@ function IngredientCard(props: Props) {
                         {props.name}
                     </Typography>
                 </Grid>
-                <Grid item>
+                {/* <Grid item>
                     {moreInfo ?
                         <div>
                             <div onClick={() => setMoreInfo(!moreInfo)}>
@@ -40,19 +37,10 @@ function IngredientCard(props: Props) {
                             <ExpandMoreIcon />
                         </div>
                     }
-                </Grid>
+                </Grid> */}
                 <Grid item>
                     <HighlightOffIcon onClick={() => props.handleDelete(props.name)} />
                 </Grid>
-            </Grid>
-            <Grid container>
-                <Grid item>
-                    <Typography>Calories: {props.calories}</Typography>
-                </Grid>
-                <Grid item>
-                    <Typography>Protein: {props.protein}</Typography>
-                </Grid>
-
             </Grid>
         </Container>
     )
