@@ -32,7 +32,6 @@ function BottomNav(props: Props) {
             <Grid container flexDirection={'row'} justifyContent={'space-around'}>
                 {props.showGenerate ?
                     <Grid item>
-                        <GenerateRandom/>
                     </Grid> 
                     : null}
                 <Grid item>
