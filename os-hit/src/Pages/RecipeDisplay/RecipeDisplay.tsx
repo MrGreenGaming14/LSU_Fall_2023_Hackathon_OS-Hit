@@ -13,8 +13,11 @@ function fetchCards() {
   }
   ) 
 }
+interface Props{
+    ingredientList: any
+}
 
-function RecipeDisplay() {
+function RecipeDisplay(props: Props) {
   const [counter, setCounter] = useState(0);
 
   // Handler function to increment the counter

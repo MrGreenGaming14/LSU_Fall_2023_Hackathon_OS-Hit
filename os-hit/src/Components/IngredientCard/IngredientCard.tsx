@@ -6,11 +6,10 @@ interface Props {
     name: string;
     toggled: boolean;
     handleDelete: (e: string) => void;
-  }
-  
-  function IngredientCard(props: Props) {
+    handleSwitch: (e: any) => void; 
+}
+function IngredientCard(props: Props) {
     const [moreInfo, setMoreInfo] = useState<boolean>(false);
-    const handleSwitch = () => {}; // TODO: handle toggle on and off state
   
     // Define a custom background color for each card
     const cardBackgroundColor = moreInfo ? '#B7B7B7' : '#fff';
@@ -20,7 +19,7 @@ interface Props {
         <Container>
           <Grid container alignItems="center">
             <Grid item>
-              <Switch defaultChecked={props.toggled} onChange={handleSwitch} />
+              <Switch defaultChecked={props.toggled} onChange={props.handleSwitch} name={props.name}/>
             </Grid>
             <Grid item>
               <Typography>{props.name}</Typography>
