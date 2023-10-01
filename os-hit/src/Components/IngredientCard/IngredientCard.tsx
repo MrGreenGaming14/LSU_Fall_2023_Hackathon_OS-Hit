@@ -1,18 +1,21 @@
 import { Container, Grid, Switch, Typography } from '@mui/material'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import React, { useState } from 'react'
-import { boolean } from 'yargs';
+
 interface Props {
     name: string;
     calories: number;
     protein: number;
     moreInfo: [];
     toggled: boolean;
+    handleDelete: (e: string) => void;
 }
 function IngredientCard(props: Props) {
     const [moreInfo, setMoreInfo] = useState<boolean>(false);
-    const handleSwitch = () => {  };
+    const handleSwitch = () => {}; //TODO: handle toggle on and off state
+
     return (
         <Container>
             <Grid container>
@@ -37,6 +40,9 @@ function IngredientCard(props: Props) {
                             <ExpandMoreIcon />
                         </div>
                     }
+                </Grid>
+                <Grid item>
+                    <HighlightOffIcon onClick={() => props.handleDelete(props.name)} />
                 </Grid>
             </Grid>
             <Grid container>

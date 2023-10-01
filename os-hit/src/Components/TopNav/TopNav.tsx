@@ -1,21 +1,45 @@
-import { Button, Container, Grid, Typography, AppBar, Box, Toolbar, IconButton,
-Menu, Avatar, Tooltip, MenuItem, List, ListItem, ListItemButton, ListItemText, 
-Divider, CssBaseline, Drawer } from '@mui/material'
+import {
+  Button, Container, Grid, Link, Typography, AppBar, Box, Toolbar, IconButton,
+  Menu, Avatar, Tooltip, MenuItem, List, ListItem, ListItemButton, ListItemText,
+  Divider, CssBaseline, Drawer
+} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from "./zestquest.png";
 import { styled } from '@mui/system';
+import { useLocation } from 'react-router';
+
+const GenRecipeButton = () => {
+  return (
+    <Link href={'/recipe'}>
+      <Button>
+        <Typography sx={{ color: "#fff" }}>
+          Generate Recipe
+        </Typography>
+      </Button>
+    </Link>)
+}
+const EditIngButton = () => {
+  return (
+    <Link href={'/'}>
+      <Button>
+        <Typography sx={{ color: "#fff" }}>
+          Edit Ingredients
+        </Typography>
+      </Button>
+    </Link>)
+}
 
 interface Props {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window?: () => Window;
-  }
-  
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window?: () => Window;
+}
+
+
 const drawerWidth = 240;
-const navItems = ['Saved Recipes'];
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
@@ -24,24 +48,26 @@ export default function DrawerAppBar(props: Props) {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+  const location = useLocation()
+  const [displayButton, setDisplayButton] = useState<any>(<GenRecipeButton />)
+  useEffect(() => {
+    const page = location.pathname;
+    if (page === '/') setDisplayButton(<GenRecipeButton />);
+    else if (page === '/recipe') setDisplayButton(<EditIngButton />);
+  }, [])
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      
+
       <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+
+      {displayButton}
+
     </Box>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
+
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -66,11 +92,7 @@ export default function DrawerAppBar(props: Props) {
             ZestQuest
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
-              </Button>
-            ))}
+            {displayButton}
           </Box>
         </Toolbar>
       </AppBar>
