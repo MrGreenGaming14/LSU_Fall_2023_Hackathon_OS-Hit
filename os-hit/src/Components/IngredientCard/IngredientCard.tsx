@@ -8,16 +8,17 @@ interface Props {
     name: string;
     toggled: boolean;
     handleDelete: (e: string) => void;
+    handleSwitch: (e: any) => void; 
 }
 function IngredientCard(props: Props) {
     const [moreInfo, setMoreInfo] = useState<boolean>(false);
-    const handleSwitch = () => {}; //TODO: handle toggle on and off state
+    
 
     return (
         <Container>
             <Grid container>
                 <Grid item>
-                    <Switch defaultChecked={props.toggled} onChange={handleSwitch} />
+                    <Switch name={props.name} defaultChecked={props.toggled} onChange={props.handleSwitch} />
                 </Grid>
                 <Grid item>
                     <Typography>

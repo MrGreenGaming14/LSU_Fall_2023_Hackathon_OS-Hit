@@ -3,39 +3,36 @@ import React, { useState } from 'react'
 import { MultiSelect } from "react-multi-select-component";
 import IngredientCard from '../IngredientCard/IngredientCard';
 
+interface Props{
+    changeIngredient: (e: any) => void
+    ingredientList: Array<any>
+    handleSwitch: (e:any) => void; 
+}
 
-//temp options
-const options = [
-    { label: "Grapes 🍇", value: "Grapes" },
-    { label: "Mango 🥭", value: "Mango" },
-    { label: "Strawberry 🍓", value: "Strawberry" },
-];
 
-function IngredientsView() {
+function IngredientsView(props: Props) {
     const [ingredientAdd, setIngredientAdd] = useState<any | null>();
-    const [ingredientList, setIngredientList] = useState<any>([]);
-
-
-
+    
     const handleSubmit = (e: any) => {
         e.preventDefault();
         const input =  ingredientAdd;
         const build = {
             value: input,
             toggled: true,
+            id: props.ingredientList.length
         }
-        const temp = ingredientList.concat(build);
-        setIngredientList(temp);
+        const temp = props.ingredientList.concat(build);
+        props.changeIngredient(temp);
         setIngredientAdd("");
     };
 
     const handleDelete = (toDel: string) => {
         console.log(toDel);
-        let tempArr = [...ingredientList];
+        let tempArr = [...props.ingredientList];
         const tempIndex = tempArr.indexOf(tempArr.find((o: any) => o.value === toDel));
         console.log(tempIndex, tempArr);
         tempArr.splice(tempIndex, 1);
-        setIngredientList(tempArr);
+        props.changeIngredient(tempArr);
     }
 
     return (
@@ -55,9 +52,9 @@ function IngredientsView() {
 
 
                 <Grid item>
-                    {ingredientList.map((ingredient: any) => {
+                    {props.ingredientList.map((ingredient: any) => {
                         return (
-                            <IngredientCard key={ingredient.name} name={ingredient.value} toggled={ingredient.toggled} handleDelete={handleDelete} />
+                            <IngredientCard key={ingredient.id} name={ingredient.value} toggled={ingredient.toggled} handleDelete={handleDelete} handleSwitch={props.handleSwitch}/>
                         )
                     })}
                 </Grid>
