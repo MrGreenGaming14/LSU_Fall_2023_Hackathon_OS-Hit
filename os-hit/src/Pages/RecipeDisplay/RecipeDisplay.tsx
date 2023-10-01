@@ -21,7 +21,7 @@ ingredientList.forEach((current: any) => {
 //const ingredientArray [] = props.map((ingredient:any)=>({ingredient.name}))
   useEffect(() => {
     // Fetch the data from the API
-    fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${joinIngredientsWithPlus(ingredients)}&ranking=2&number=20&apiKey=3e94b8791d99441f8a21b8a8dfef8928&includeNutrition=true`)
+    fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${joinIngredientsWithPlus(ingredients)}&ranking=2&number=20&apiKey=7b50e37e64804d41b0880d13620c5bc5&includeNutrition=true`)
    // fetch('https://api.https://pokeapi.co/api/v2/pokemon/.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=10&apiKey=3e94b8791d99441f8a21b8a8dfef8928&includeNutrition=true')
     .then((response) => response.json())
       .then((data) => {
