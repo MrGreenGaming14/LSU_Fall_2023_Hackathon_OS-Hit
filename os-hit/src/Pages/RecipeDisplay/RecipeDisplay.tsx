@@ -10,8 +10,8 @@ function RecipeDisplay() {
 
   useEffect(() => {
     // Fetch the data from the API
-    //fetch('https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=10&apiKey=3e94b8791d99441f8a21b8a8dfef8928&includeNutrition=true')
-    fetch('https://api.https://pokeapi.co/api/v2/pokemon/.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=10&apiKey=3e94b8791d99441f8a21b8a8dfef8928&includeNutrition=true')
+    fetch('https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=10&apiKey=3e94b8791d99441f8a21b8a8dfef8928&includeNutrition=true')
+    //fetch('https://api.https://pokeapi.co/api/v2/pokemon/.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=10&apiKey=3e94b8791d99441f8a21b8a8dfef8928&includeNutrition=true')
     .then((response) => response.json())
       .then((data) => {
         // Map the data to RecipeCard components
