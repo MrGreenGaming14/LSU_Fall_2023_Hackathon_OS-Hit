@@ -1,48 +1,41 @@
-interface Ingredient {
-  name: string;
-  quantity: number;
-  unit: string;
-}
+import { Grid, Container, Typography } from '@mui/material'
+import React, { useState } from 'react'
+import { MultiSelect } from "react-multi-select-component";
+import IngredientCard from '../IngredientCard/IngredientCard';
 
-const ingredients: Ingredient[] = [
-  { name: "Flour", quantity: 2, unit: "cups" },
-  { name: "Sugar", quantity: 1, unit: "cup" },
-  { name: "Eggs", quantity: 2, unit: "" },
-  { name: "Milk", quantity: 1, unit: "cup" }
+
+//temp options
+const options = [
+    { label: "Grapes 🍇", value: "grapes" },
+    { label: "Mango 🥭", value: "mango" },
+    { label: "Strawberry 🍓", value: "strawberry" },
 ];
 
-export function createIngredientTable(ingredients: Ingredient[]) {
-  const table = document.createElement("table");
-  const thead = document.createElement("thead");
-  const tbody = document.createElement("tbody");
-
-  // Create table header
-  const headerRow = document.createElement("tr");
-  const headers = ["Ingredient", " Quantity ", "Unit"];
-  headers.forEach((header) => {
-    const th = document.createElement("th");
-    th.textContent = header;
-    headerRow.appendChild(th);
-  });
-  thead.appendChild(headerRow);
-
-  // Create table rows
-  ingredients.map((ingredient) => {
-    const row = document.createElement("tr");
-    const nameCell = document.createElement("td");
-    nameCell.textContent = ingredient.name;
-    row.appendChild(nameCell);
-    const quantityCell = document.createElement("td");
-    quantityCell.textContent = ingredient.quantity.toString();
-    row.appendChild(quantityCell);
-    const unitCell = document.createElement("td");
-    unitCell.textContent = ingredient.unit;
-    row.appendChild(unitCell);
-    tbody.appendChild(row);
-  });
-
-  table.appendChild(thead);
-  table.appendChild(tbody);
-
-  return table;
+function IngredientsView() {
+    const [ingredient, setIngredient] = useState([]);
+    return (
+        <Container>
+            <Grid container flexDirection={"column"}>
+                <Grid item>
+                    <Typography>Select Ingredients To Use</Typography>
+                    <MultiSelect
+                        options={options}
+                        value={ingredient}
+                        onChange={setIngredient}
+                        labelledBy="Select"
+                        hasSelectAll={false}
+                    />
+                </Grid>
+                <Grid item>
+                    {ingredient.map((ingredient: any) => {
+                        return (
+                            <IngredientCard name={ingredient.value} calories={ingredient.calories} protein={ingredient.protein} moreInfo={ingredient.info} toggled={ingredient.toggled} />
+                        )
+                    })}
+                </Grid>
+            </Grid>
+        </Container>
+    )
 }
+
+export default IngredientsView
