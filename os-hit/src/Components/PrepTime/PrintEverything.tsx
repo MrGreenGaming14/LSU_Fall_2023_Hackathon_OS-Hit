@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import NutritionTable from "./practice";
-import { createIngredientTable } from "./ingredients";
-import MealSteps from "./mealSteps";
+import NutritionTable from "../NutritionalFacts/NutritionalFacts";
+import { createIngredientTable } from "../List_Ingredients/List_Ingredients";
+import MealSteps from "../Recipe/List_Recipe";
 
 const rootElement = document.getElementById("root")!;
 const root = ReactDOM.createRoot(rootElement);
