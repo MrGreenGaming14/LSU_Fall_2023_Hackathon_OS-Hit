@@ -1,71 +1,63 @@
-import React, { useState, FormEvent } from 'react';
-import { Grid, Container, Typography, Button, TextField } from '@mui/material';
+import { Grid, Container, Typography, Button, TextField } from '@mui/material'
+import React, { useState } from 'react'
 import IngredientCard from '../IngredientCard/IngredientCard';
 
-interface Ingredient {
-  name: string;
-  calories?: number;
-  protein?: number;
-  info?: string;
-}
-
 function IngredientsView() {
-  const [ingredientInput, setIngredientInput] = useState<string>('');
-  const [ingredientList, setIngredientList] = useState<Ingredient[]>([]);
+    const [ingredientAdd, setIngredientAdd] = useState<any | null>();
+    const [ingredientList, setIngredientList] = useState<any>([]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIngredientInput(e.target.value);
-  };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault(); // Prevent the form from submitting and reloading the page
 
-    if (ingredientInput.trim() !== '') {
-      const newIngredient: Ingredient = {
-        name: ingredientInput,
-        // Add more properties for custom ingredients here if needed
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+    
+        const input = ingredientAdd.trim(); // Trim leading and trailing whitespace
+        if (input !== '') {
+          const build = {
+            value: input,
+            toggled: true,
+          };
+          const temp = ingredientList.concat(build);
+          setIngredientList(temp);
+          setIngredientAdd('');
+        }
       };
 
-      setIngredientList([...ingredientList, newIngredient]);
-      setIngredientInput('');
+    const handleDelete = (toDel: string) => {
+        console.log(toDel);
+        let tempArr = [...ingredientList];
+        const tempIndex = tempArr.indexOf(tempArr.find((o: any) => o.value === toDel));
+        console.log(tempIndex, tempArr);
+        tempArr.splice(tempIndex, 1);
+        setIngredientList(tempArr);
     }
-  };
 
-  const handleDelete = (toDel: string) => {
-    const updatedIngredients = ingredientList.filter((ingredient) => ingredient.name !== toDel);
-    setIngredientList(updatedIngredients);
-  };
+    return (
+        <Container>
+            <Grid container flexDirection={"column"}>
 
-  return (
-    <Container>
-      <form onSubmit={handleSubmit}>
-        <Grid container flexDirection={'column'}>
-          <Grid container flexDirection={'row'}>
-            <Grid item>
-              <TextField
-                label="Ingredient Name"
-                variant="outlined"
-                value={ingredientInput}
-                onChange={handleInputChange}
-              />
+                <form>
+                    <Grid container flexDirection={"row"}>
+                        <Grid item>
+                            <TextField id="input" name="input" label="Add Ingredients To Use" variant="outlined" value={ingredientAdd} onChange={(e)=> setIngredientAdd(e.target?.form?.input?.value)} />
+                        </Grid>
+                        <Button type="submit" onClick={handleSubmit}>
+                            Add
+                        </Button>
+                    </Grid>
+                </form>
+
+
+                <Grid item>
+                    {ingredientList.map((ingredient: any) => {
+                        return (
+                            <IngredientCard key={ingredient.name} name={ingredient.value} toggled={ingredient.toggled} handleDelete={handleDelete} calories={0} protein={0} moreInfo={[]} />
+                        )
+                    })}
+                </Grid>
             </Grid>
-            <Button type="submit">Add</Button>
-          </Grid>
-        </Grid>
-      </form>
-
-      <Grid item>
-        {ingredientList.map((ingredient) => {
-          return (
-            <IngredientCard
-                  key={ingredient.name}
-                  name={ingredient.name}
-                  handleDelete={handleDelete} calories={0} protein={0} moreInfo={[]} toggled={false}            />
-          );
-        })}
-      </Grid>
-    </Container>
-  );
+        </Container >
+    )
 }
 
-export default IngredientsView;
+export default IngredientsView
