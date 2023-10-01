@@ -6,8 +6,6 @@ function IngredientsView() {
     const [ingredientAdd, setIngredientAdd] = useState<any | null>();
     const [ingredientList, setIngredientList] = useState<any>([]);
 
-
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
     
@@ -46,12 +44,10 @@ function IngredientsView() {
                         </Button>
                     </Grid>
                 </form>
-
-
                 <Grid item>
                     {ingredientList.map((ingredient: any) => {
                         return (
-                            <IngredientCard key={ingredient.name} name={ingredient.value} toggled={ingredient.toggled} handleDelete={handleDelete} calories={0} protein={0} moreInfo={[]} />
+                            <IngredientCard key={ingredient.name} name={ingredient.value} toggled={ingredient.toggled} handleDelete={handleDelete} />
                         )
                     })}
                 </Grid>

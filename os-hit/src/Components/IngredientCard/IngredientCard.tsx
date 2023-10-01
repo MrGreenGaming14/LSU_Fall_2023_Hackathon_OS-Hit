@@ -4,9 +4,6 @@ import React, { useState } from 'react'
 
 interface Props {
     name: string;
-    calories: number;
-    protein: number;
-    moreInfo: [];
     toggled: boolean;
     handleDelete: (e: string) => void;
   }
