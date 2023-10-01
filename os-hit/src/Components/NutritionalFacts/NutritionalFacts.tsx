@@ -1,16 +1,40 @@
-function Nutrition()
-{
-    const nutritional_facts = {calories: 300, protein: '12g', fat: '20g', sodium: '6mg'};
-    return (
-        <div className = "Recipe">
-            <div className = "Nutrition">
-                <p> { nutritional_facts.calories } </p>
-                <p> { nutritional_facts.protein }</p>
-                <p> { nutritional_facts.fat }</p>
-                <p> { nutritional_facts.sodium }</p>
-            </div>
-        </div>
-    )
+import React from "react";
+
+interface NutritionTableProps {
+  data: {
+    name: string;
+    calories: number;
+    fat: number;
+    carbs: number;
+    protein: number;
+  }[];
 }
 
-export default Nutrition
+const NutritionTable = ({ data }: NutritionTableProps) => {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Calories</th>
+          <th>Fat</th>
+          <th>Carbs</th>
+          <th>Protein</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item, index) => (
+          <tr key={index}>
+            <td>{item.name}</td>
+            <td>{item.calories}</td>
+            <td>{item.fat}</td>
+            <td>{item.carbs}</td>
+            <td>{item.protein}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};
+
+export default NutritionTable;

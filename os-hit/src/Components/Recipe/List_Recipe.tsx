@@ -1,14 +1,22 @@
-function Recipe()
-{
-    const recipe = ["20 grams of sugar", "2 spoonfuls of garlic"];
-    return (
-        <div className = "Recipe">
-            <div className = "Nutrition">
-                <p> { recipe[1] } </p>
-                <p> { recipe[0] }</p>
-            </div>
-        </div>
-    )
+import React from "react";
+
+interface Step {
+  id: number;
+  description: string;
 }
 
-export default Recipe
+interface Props {
+  steps: Step[];
+}
+
+export const MealSteps: React.FC<Props> = ({ steps }) => {
+  return (
+    <ol>
+      {steps.map((step) => (
+        <li key={step.id}>{step.description}</li>
+      ))}
+    </ol>
+  );
+};
+
+export default MealSteps;
