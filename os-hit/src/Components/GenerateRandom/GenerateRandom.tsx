@@ -2,7 +2,7 @@
 
 // <<<<<<< Robbie
 // =======
-// function GenerateRandom() {
+function GenerateRandom() {
 //   return (
 //     <Button>Generate Random</Button>
 //   )
@@ -71,7 +71,7 @@
 //       )}
 //     </div>
 //   );
-// }
+}
 
 
-// export default GenerateRandom
+export default GenerateRandom

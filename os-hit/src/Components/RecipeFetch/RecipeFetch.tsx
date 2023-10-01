@@ -1,7 +1,7 @@
 
 // import React, { useState, useEffect } from 'react';
 
-// function RecipeListComponent() {
+function RecipeListComponent() {
 //   const [recipes, setRecipes] = useState([]);
 //   const [isLoading, setIsLoading] = useState(true);
 
@@ -49,6 +49,6 @@
 //       )}
 //     </div>
 //   );
-// }
+}
 
-// export default RecipeListComponent;
+export default RecipeListComponent;
