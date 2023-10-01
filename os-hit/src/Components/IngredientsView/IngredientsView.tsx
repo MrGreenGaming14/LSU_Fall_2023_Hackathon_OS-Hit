@@ -1,33 +1,25 @@
 import { Grid, Container, Typography, Button, TextField } from '@mui/material'
 import React, { useState } from 'react'
-import { MultiSelect } from "react-multi-select-component";
 import IngredientCard from '../IngredientCard/IngredientCard';
-
-
-//temp options
-const options = [
-    { label: "Grapes 🍇", value: "Grapes" },
-    { label: "Mango 🥭", value: "Mango" },
-    { label: "Strawberry 🍓", value: "Strawberry" },
-];
 
 function IngredientsView() {
     const [ingredientAdd, setIngredientAdd] = useState<any | null>();
     const [ingredientList, setIngredientList] = useState<any>([]);
 
-
-
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const input =  ingredientAdd;
-        const build = {
+    
+        const input = ingredientAdd.trim(); // Trim leading and trailing whitespace
+        if (input !== '') {
+          const build = {
             value: input,
             toggled: true,
+          };
+          const temp = ingredientList.concat(build);
+          setIngredientList(temp);
+          setIngredientAdd('');
         }
-        const temp = ingredientList.concat(build);
-        setIngredientList(temp);
-        setIngredientAdd("");
-    };
+      };
 
     const handleDelete = (toDel: string) => {
         console.log(toDel);
@@ -45,15 +37,13 @@ function IngredientsView() {
                 <form>
                     <Grid container flexDirection={"row"}>
                         <Grid item>
-                            <TextField id="input" name="input" label="Select Ingredients To Use" variant="outlined" value={ingredientAdd} onChange={(e)=> setIngredientAdd(e.target?.form?.input?.value)} />
+                            <TextField id="input" name="input" label="Add Ingredients To Use" variant="outlined" value={ingredientAdd} onChange={(e)=> setIngredientAdd(e.target?.form?.input?.value)} />
                         </Grid>
                         <Button type="submit" onClick={handleSubmit}>
                             Add
                         </Button>
                     </Grid>
                 </form>
-
-
                 <Grid item>
                     {ingredientList.map((ingredient: any) => {
                         return (
