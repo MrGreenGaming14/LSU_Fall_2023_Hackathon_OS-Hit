@@ -4,14 +4,25 @@ import TopNav from '../../Components/TopNav/TopNav';
 import { Container } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 
-function RecipeDisplay(props: Props) {
+function joinIngredientsWithPlus(stringsArray: any) {
+  return stringsArray.join(',+');
+}
+
+function RecipeDisplay({ingredientList}:any) {
   const [counter, setCounter] = useState(0);
   const [recipeCards, setRecipeCards] = useState<JSX.Element[]>([]);
 
+let ingredients: string[] = []
+ingredientList.forEach((current: any) => {
+    ingredients.push(current.value.toString())
+})
+
+  console.log(joinIngredientsWithPlus(ingredients));
+//const ingredientArray [] = props.map((ingredient:any)=>({ingredient.name}))
   useEffect(() => {
     // Fetch the data from the API
-    fetch('https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=10&apiKey=3e94b8791d99441f8a21b8a8dfef8928&includeNutrition=true')
-    //fetch('https://api.https://pokeapi.co/api/v2/pokemon/.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=10&apiKey=3e94b8791d99441f8a21b8a8dfef8928&includeNutrition=true')
+    fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${joinIngredientsWithPlus(ingredients)}&ranking=2&number=20&apiKey=3e94b8791d99441f8a21b8a8dfef8928&includeNutrition=true`)
+   // fetch('https://api.https://pokeapi.co/api/v2/pokemon/.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=10&apiKey=3e94b8791d99441f8a21b8a8dfef8928&includeNutrition=true')
     .then((response) => response.json())
       .then((data) => {
         // Map the data to RecipeCard components
@@ -49,7 +60,7 @@ function RecipeDisplay(props: Props) {
           </div>
         )}
       </div>
-      <TopNav />
+      <TopNav displayButton={undefined} />
     </Container>
   );
 }

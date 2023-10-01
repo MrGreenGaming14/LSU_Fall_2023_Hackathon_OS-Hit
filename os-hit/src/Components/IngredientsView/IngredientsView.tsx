@@ -1,4 +1,4 @@
-import { Grid, Container, Typography } from '@mui/material'
+import { Grid, Container, Typography, Button, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { MultiSelect } from "react-multi-select-component";
 import IngredientCard from '../IngredientCard/IngredientCard';
@@ -12,19 +12,23 @@ interface Props{
 
 function IngredientsView(props: Props) {
     const [ingredientAdd, setIngredientAdd] = useState<any | null>();
-    
-    const handleSubmit = (e: any) => {
+
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const input =  ingredientAdd;
-        const build = {
+
+        if(ingredientAdd != null){
+        const input = ingredientAdd.trim(); // Trim leading and trailing whitespace
+        if (input !== '') {
+          const build = {
             value: input,
             toggled: true,
-            id: props.ingredientList.length
+          };
+          const temp = props.ingredientList.concat(build);
+          props.changeIngredient(temp);
+          setIngredientAdd('');
         }
-        const temp = props.ingredientList.concat(build);
-        props.changeIngredient(temp);
-        setIngredientAdd("");
-    };
+    }
+      };
 
     const handleDelete = (toDel: string) => {
         console.log(toDel);
@@ -38,16 +42,19 @@ function IngredientsView(props: Props) {
     return (
         <Container>
             <Grid container flexDirection={"column"}>
-                <Grid item>
-                    <Typography>Select Ingredients To Use</Typography>
-                    <MultiSelect
-                        options={options}
-                        value={ingredient}
-                        onChange={setIngredient}
-                        labelledBy="Select"
-                        hasSelectAll={false}
-                    />
-                </Grid>
+
+                <form>
+                    <Grid container flexDirection={"row"}>
+                        <Grid item>
+                            <TextField id="input" required name="input" label="Add Ingredients To Use" variant="outlined" value={ingredientAdd} onChange={(e)=> setIngredientAdd(e.target?.form?.input?.value)} />
+                        </Grid>
+                        <Button type="submit" onClick={handleSubmit}>
+                            Add
+                        </Button>
+                    </Grid>
+                </form>
+
+
                 <Grid item>
                     {props.ingredientList.map((ingredient: any) => {
                         return (
@@ -56,7 +63,7 @@ function IngredientsView(props: Props) {
                     })}
                 </Grid>
             </Grid>
-        </Container>
+        </Container >
     )
 }
 

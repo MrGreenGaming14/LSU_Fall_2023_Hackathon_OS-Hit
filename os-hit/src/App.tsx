@@ -64,7 +64,9 @@ function App() {
     <div>
       <TopNav displayButton={displayButton} />
       <div className='mainViewport'>
-        <IngredientsView/>
+        {setDisplayed ?
+          <IngredientsView changeIngredient={changeIngredient} ingredientList={ingredientList} handleSwitch={handleSwitch}/> 
+          : <RecipeDisplay ingredientList={ingredientList} />}
       </div>
       {/* <BottomNav showGenerate /> */}
     </div>
