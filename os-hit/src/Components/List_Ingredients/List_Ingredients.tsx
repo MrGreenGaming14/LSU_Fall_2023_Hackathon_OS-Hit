@@ -1,38 +1,48 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-
-//npm install --save react-window
-import { FixedSizeList, ListChildComponentProps } from 'react-window';
-
-function renderRow(props: ListChildComponentProps) {
-  const { index, style } = props;
-
-  return (
-    <ListItem style={style} key={index} component="div" disablePadding>
-      <ListItemButton>
-        <ListItemText primary={`Item ${index + 1}`} />
-      </ListItemButton>
-    </ListItem>
-  );
+interface Ingredient {
+  name: string;
+  quantity: number;
+  unit: string;
 }
 
-export default function VirtualizedList() {
-  return (
-    <Box
-      sx={{ width: '100%', height: 400, maxWidth: 360, bgcolor: 'background.paper' }}
-    >
-      <FixedSizeList
-        height={400}
-        width={360}
-        itemSize={46}
-        itemCount={200}
-        overscanCount={5}
-      >
-        {renderRow}
-      </FixedSizeList>
-    </Box>
-  );
+const ingredients: Ingredient[] = [
+  { name: "Flour", quantity: 2, unit: "cups" },
+  { name: "Sugar", quantity: 1, unit: "cup" },
+  { name: "Eggs", quantity: 2, unit: "" },
+  { name: "Milk", quantity: 1, unit: "cup" }
+];
+
+export function createIngredientTable(ingredients: Ingredient[]) {
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const tbody = document.createElement("tbody");
+
+  // Create table header
+  const headerRow = document.createElement("tr");
+  const headers = ["Ingredient", " Quantity ", "Unit"];
+  headers.forEach((header) => {
+    const th = document.createElement("th");
+    th.textContent = header;
+    headerRow.appendChild(th);
+  });
+  thead.appendChild(headerRow);
+
+  // Create table rows
+  ingredients.map((ingredient) => {
+    const row = document.createElement("tr");
+    const nameCell = document.createElement("td");
+    nameCell.textContent = ingredient.name;
+    row.appendChild(nameCell);
+    const quantityCell = document.createElement("td");
+    quantityCell.textContent = ingredient.quantity.toString();
+    row.appendChild(quantityCell);
+    const unitCell = document.createElement("td");
+    unitCell.textContent = ingredient.unit;
+    row.appendChild(unitCell);
+    tbody.appendChild(row);
+  });
+
+  table.appendChild(thead);
+  table.appendChild(tbody);
+
+  return table;
 }
