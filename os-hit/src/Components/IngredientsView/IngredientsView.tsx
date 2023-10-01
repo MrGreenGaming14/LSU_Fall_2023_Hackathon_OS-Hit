@@ -6,9 +6,9 @@ import IngredientCard from '../IngredientCard/IngredientCard';
 
 //temp options
 const options = [
-    { label: "Grapes 🍇", value: "grapes" },
-    { label: "Mango 🥭", value: "mango" },
-    { label: "Strawberry 🍓", value: "strawberry" },
+    { label: "Grapes 🍇", value: "Grapes" },
+    { label: "Mango 🥭", value: "Mango" },
+    { label: "Strawberry 🍓", value: "Strawberry" },
 ];
 
 function IngredientsView() {
