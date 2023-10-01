@@ -12,15 +12,20 @@ interface Props {
     toggled: boolean;
     handleDelete: (e: string) => void;
 }
+
 function IngredientCard(props: Props) {
-    const [moreInfo, setMoreInfo] = useState<boolean>(false);
-    const handleSwitch = () => {}; //TODO: handle toggle on and off state
+    // Initialize moreInfo state to true for the Switch to be toggled on by default
+    const [moreInfo, setMoreInfo] = useState<boolean>(true);
+
+    const handleSwitch = () => {
+        setMoreInfo(!moreInfo);
+    };
 
     return (
         <Container>
             <Grid container>
                 <Grid item>
-                    <Switch defaultChecked={props.toggled} onChange={handleSwitch} />
+                    <Switch checked={moreInfo} onChange={handleSwitch} />
                 </Grid>
                 <Grid item>
                     <Typography>
@@ -45,17 +50,8 @@ function IngredientCard(props: Props) {
                     <HighlightOffIcon onClick={() => props.handleDelete(props.name)} />
                 </Grid>
             </Grid>
-            <Grid container>
-                <Grid item>
-                    <Typography>Calories: {props.calories}</Typography>
-                </Grid>
-                <Grid item>
-                    <Typography>Protein: {props.protein}</Typography>
-                </Grid>
-
-            </Grid>
         </Container>
     )
 }
 
-export default IngredientCard
+export default IngredientCard;
